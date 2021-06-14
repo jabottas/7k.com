@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/sup.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -35,7 +36,7 @@
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>
                         <li class="nav-item"><a class="nav-link" href="avaliacoes.html">Avaliações</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cadastro.html">cadastro</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,13 +45,12 @@
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
-                    <form class="login100-form validate-form">
+                    <form method="POST" action="cadastro.php" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
-                            Welcome
+                            cadastro
                         </span>
                         <span class="login100-form-title p-b-48">
                         </span>
-
                         <div class="wrap-input100 validate-input">
                             <input class="input100" type="text" name="nome">
                             <span class="focus-input100" data-placeholder="name"></span>
@@ -96,9 +96,7 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <button class="login100-form-btn">
-                                    Login
-                                </button>
+                                <input class="login100-form-btn bg-success" value="cadastro" id="cadastro" name="cadastro" type="submit" >
                             </div>
                         </div>
                     </form>

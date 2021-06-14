@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
         <meta name="author" content="" />
         <title>7k.com</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -14,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -28,17 +28,61 @@
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>
                         <li class="nav-item"><a class="nav-link" href="avaliacoes.html">Avaliações</a></li>
-                        <li class="nav-item"><a class="nav-link" href="login.html">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cadastro.html">cadastro</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <!--tabela-->
+        <div class="centraliza2">
         <div class="centraliza">
+            <!--form-->
+            <div class="cadastromusica">
+                <div class="wrap-login100">
+                    <form method="POST" action="cadastro.php" class="login100-form validate-form">
+                        <span class="login100-form-title p-b-26">
+                            classificar
+                        </span>
+                        <span class="login100-form-title p-b-48">
+                        </span>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" name="nomemsc">
+                            <span class="focus-input100" data-placeholder="name música"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" name="album">
+                            <span class="focus-input100" data-placeholder="album"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" name="nota">
+                            <span class="focus-input100" data-placeholder="name"></span>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckDefault"> <!--pequeno bug-->
+                            <label class="form-check-label" for="flexCheckDefault"></label>
+                            Favotitar musica
+                            </label>
+                        </div>
+    
+                        
+    
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <input class="login100-form-btn bg-success" value="cadastromsc" id="cadastromsc" name="cadastromsc" type="submit" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <!--tabela-->
             <table class="tableaval">
                 <thead class="thead-dark">
-
-                <tr> <th>-</th><th></th><th>x</th><th>x</th><th></th></tr>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">nome</th>
@@ -115,9 +159,11 @@
                 </tr>
                 </tbody>
             </table>
+        
         </div>
+        </div>       
         <!-- Footer-->
-        <footer class="py-4 bg-dark flex-shrink-0">
+        <footer class="py-4 bg-dark flex-shrink-0 h-7">
             <div class="container text-center">
                 <p class="text-muted">7k.com - 2021 © Todos os Direitos Reservados</p>
             </div>
