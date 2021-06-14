@@ -51,13 +51,18 @@
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="album">
-                            <span class="focus-input100" data-placeholder="album"></span>
+                            <input class="input100" list="albuns" id="escolha-album" name="escolha-album" />
+                            <span class="focus-input100" data-placeholder="álbum"></span>
+                            <datalist id="albuns">
+                                <option value="MPD1">
+                                <option value="MPD2">
+                                <option value="MPD3">
+                            </datalist>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nota">
-                            <span class="focus-input100" data-placeholder="name"></span>
+                            <input class="input100" type="number" name="nota" min="0" max="10">
+                            <span class="focus-input100" data-placeholder="nota"></span>
                         </div>
 
                         <div class="form-check">
@@ -72,7 +77,7 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <input class="login100-form-btn bg-success" value="cadastromsc" id="cadastromsc" name="cadastromsc" type="submit" >
+                                <input class="login100-form-btn bg-success" value="cadastrar" id="cadastromsc" name="cadastromsc" type="submit" >
                             </div>
                         </div>
                     </form>
