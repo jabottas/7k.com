@@ -349,6 +349,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 13px;
+
 }
 
 .wrap-login100-form-btn {
@@ -397,12 +398,25 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 50px;
+  color: #fff;
+  background-color: #ee0979;
+  border-color: #ee0979;
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {
   left: 0;
+  color: #fff;
+  background-color: #ca0867;
+  border-color: #be0761;
 }
 
+/*------------------------------------------------------------------
+[ table ]*/
+
+.centertable{
+  text-align: center;
+  vertical-align: middle;
+}
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
@@ -483,6 +497,3 @@ iframe {
     opacity: 1;
   }
 }
-
-
-
