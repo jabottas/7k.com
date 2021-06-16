@@ -39,13 +39,6 @@
         }
         }catch(Exception $e){
         echo "<script>alert('erro!')</script>";
-
-        $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        //Insert.
-        if(isset($_POST['nome'])){
-            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?,?)");
-            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$_POST['radio'],$_POST['termo']));
         }
     ?>
     <body id="page-top">
