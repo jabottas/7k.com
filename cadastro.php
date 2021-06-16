@@ -24,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="css/sup.css">
     </head>
     <?php
+<<<<<<< HEAD
 
         try{
         $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
@@ -37,6 +38,14 @@
         }
         }catch(Exception $e){
         echo "<script>alert('erro!')</script>";
+=======
+        $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        //Insert.
+        if(isset($_POST['nome'])){
+            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?,?)");
+            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$_POST['radio'],$_POST['termo']));
+>>>>>>> 6f0c79ab3c606818c986f39cc7cbedb7306c9f5a
         }
     ?>
     <body id="page-top">
@@ -103,7 +112,11 @@
                         </div>
 
                         <div class="form-check">
+<<<<<<< HEAD
                             <input class="form-check-input shadow-none" name="termo" type="checkbox" id="flexCheckDefault" checked = "false"> <!--pequeno bug-->
+=======
+                            <input class="form-check-input shadow-none" name="termo" type="checkbox" value="1" id="flexCheckDefault"> <!--pequeno bug-->
+>>>>>>> 6f0c79ab3c606818c986f39cc7cbedb7306c9f5a
                             <label class="form-check-label" for="flexCheckDefault">
                               Concordo com todos os termos de acesso do site.
                             </label>
