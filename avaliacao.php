@@ -15,6 +15,15 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/main.css" />
     </head>
+    <?php
+        $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        //Insert.
+        if(isset($_POST['nome'])){
+            $sql = $pdo->prepare("INSERT INTO bd_avaliacao VALUES (null,?,?,?,?)");
+            $sql->execute(array($_POST['nome'],$_POST['album'],$_POST['nota'],$_POST['fav']));
+        }
+    ?>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -27,8 +36,8 @@
                         <li class="nav-item"><a class="nav-link" href="MPD2.html">MPD2</a></li>
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="avaliacoes.html">Avaliações</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cadastro.html">cadastro</a></li>
+                        <li class="nav-item"><a class="nav-link" href="avaliacao.php">Avaliações</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cadastro.php">cadastro</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,7 +47,7 @@
             <!--form-->
             <div class="cadastromusica">
                 <div class="wrap-login100">
-                    <form method="POST" action="avaliacao.php" class="login100-form validate-form">
+                    <form method="POST" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
                             classificar
                         </span>
@@ -46,12 +55,12 @@
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text"  method="POST" name="name_musica">
+                            <input class="input100" type="text"  method="POST" name="nome">
                             <span class="focus-input100" data-placeholder="name música"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" list="albuns"  method="POST" id="escolha-album" name="escolha_album" />
+                            <input class="input100" list="albuns"  method="POST" id="escolha-album" name="album" />
                             <span class="focus-input100" data-placeholder="álbum"></span>
                             <datalist id="albuns">
                                 <option value="MPD1">
@@ -64,11 +73,17 @@
                             <input class="input100" type="number" method="POST" name="nota" min="0" max="10">
                             <span class="focus-input100" data-placeholder="nota"></span>
                         </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="checkbox" method="POST" value="" name="fav" id="flexCheckDefault"> <!--pequeno bug-->
-                            <label class="form-check-label" for="flexCheckDefault"></label>
-                            Favotitar musica
+                        <p>Favoritar música?</p>
+                            <div class="form-check">
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios1" value="★" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                              Sim
+                            </label>
+                        </div>
+                        <div class="form-check wrap-input100">
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios2" value="">
+                            <label class="form-check-label" for="exampleRadios2">
+                            Não
                             </label>
                         </div>
     
@@ -85,87 +100,18 @@
                     </form>
                 </div>
             </div>
+            <div class="tableaval">
+            <?php
+                   $sql = $pdo->prepare("SELECT * FROM bd_avaliacao");
+                   $sql-> execute();
 
-            <!--tabela-->
-            <table class="tableaval">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">nome</th>
-                    <th scope="col" class="centertable">album</th>
-                    <th scope="col" class="centertable">nota</th>
-                    <th scope="col" class="centertable">favoritas</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>rejeite falsos icones</td><td class="centertable">MPD1</td><td class="centertable">8</td><td class="centertable">★</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">10</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">11</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">12</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">13</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">14</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">15</th>
-                    <td>x</td>
-                </tr>
-                <tr>
-                    <th scope="row">16</th>
-                    <td>x</td>
-                </tr>
-                </tbody>
-            </table>
-        
+                   $fetchbd_avaliacao = $sql->fetchAll();
+                   foreach ($fetchbd_avaliacao as $key => $value){
+                       echo $value['id'].' | '.$value['nomemsc'].' | '.$value['album'].' | '.$value['nota'].' | '.$value['favoritar'];
+                       echo '<hr>';
+                   }
+            ?>
+            </div>
         </div>
         </div>       
         <!-- Footer
@@ -188,6 +134,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script src="avaliacao.php"></script>
     </body>
 </html>
