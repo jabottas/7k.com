@@ -24,13 +24,12 @@
         <link rel="stylesheet" type="text/css" href="css/sup.css">
     </head>
     <?php
-        $pdo = new PDO('mysql:localhost;dbname=yungbuda','root','');
-
+        $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         //Insert.
         if(isset($_POST['nome'])){
-            $sql = $pdo->prepare("INSERT INTO clientes VALUE (null,?,?,?,?,?,?)");
-            $sql->execute(array($_POST["nome"],$_POST["email"],$_POST["pass"],$_POST["data"],$_POST["radio"],$_POST["termo"]));
-            echo "inserido com sucesso";
+            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?,?)");
+            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$_POST['radio'],$_POST['termo']));
         }
     ?>
     <body id="page-top">
@@ -45,8 +44,8 @@
                         <li class="nav-item"><a class="nav-link" href="MPD2.html">MPD2</a></li>
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="avaliacoes.html">Avaliações</a></li>
-                        <li class="nav-item"><a class="nav-link" href="cadastro.html">cadastro</a></li>
+                        <li class="nav-item"><a class="nav-link" href="avaliacao.php">Avaliações</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cadastro.php">cadastro</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +54,7 @@
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
-                    <form method="POST" action="cadastro.php" class="login100-form validate-form">
+                    <form method="POST" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
                             cadastro
                         </span>
@@ -97,7 +96,7 @@
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input shadow-none" name="termo" type="checkbox" value="" id="flexCheckDefault"> <!--pequeno bug-->
+                            <input class="form-check-input shadow-none" name="termo" type="checkbox" value="1" id="flexCheckDefault"> <!--pequeno bug-->
                             <label class="form-check-label" for="flexCheckDefault">
                               Concordo com todos os termos de acesso do site.
                             </label>
