@@ -38,7 +38,7 @@
             <!--form-->
             <div class="cadastromusica">
                 <div class="wrap-login100">
-                    <form method="POST" action="cadastro.php" class="login100-form validate-form">
+                    <form method="POST" action="avaliacao.php" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
                             classificar
                         </span>
@@ -46,12 +46,12 @@
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nomemsc">
+                            <input class="input100" type="text"  method="POST" name="name_musica">
                             <span class="focus-input100" data-placeholder="name música"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" list="albuns" id="escolha-album" name="escolha-album" />
+                            <input class="input100" list="albuns"  method="POST" id="escolha-album" name="escolha_album" />
                             <span class="focus-input100" data-placeholder="álbum"></span>
                             <datalist id="albuns">
                                 <option value="MPD1">
@@ -61,12 +61,12 @@
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="number" name="nota" min="0" max="10">
+                            <input class="input100" type="number" method="POST" name="nota" min="0" max="10">
                             <span class="focus-input100" data-placeholder="nota"></span>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckDefault"> <!--pequeno bug-->
+                            <input class="form-check-input shadow-none" type="checkbox" method="POST" value="" name="fav" id="flexCheckDefault"> <!--pequeno bug-->
                             <label class="form-check-label" for="flexCheckDefault"></label>
                             Favotitar musica
                             </label>
@@ -77,7 +77,9 @@
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
+                                
                                 <input class="login100-form-btn" value="cadastrar" id="cadastromsc" name="cadastromsc" type="submit" >
+                            
                             </div>
                         </div>
                     </form>
@@ -186,5 +188,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script src="avaliacao.php"></script>
     </body>
 </html>

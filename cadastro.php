@@ -23,6 +23,16 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/sup.css">
     </head>
+    <?php
+        $pdo = new PDO('mysql:localhost;dbname=yungbuda','root','');
+
+        //Insert.
+        if(isset($_POST['nome'])){
+            $sql = $pdo->prepare("INSERT INTO clientes VALUE (null,?,?,?,?,?,?)");
+            $sql->execute(array($_POST["nome"],$_POST["email"],$_POST["pass"],$_POST["data"],$_POST["radio"],$_POST["termo"]));
+            echo "inserido com sucesso";
+        }
+    ?>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -87,7 +97,7 @@
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input shadow-none" type="checkbox" value="" id="flexCheckDefault"> <!--pequeno bug-->
+                            <input class="form-check-input shadow-none" name="termo" type="checkbox" value="" id="flexCheckDefault"> <!--pequeno bug-->
                             <label class="form-check-label" for="flexCheckDefault">
                               Concordo com todos os termos de acesso do site.
                             </label>
