@@ -18,11 +18,29 @@
     <?php
         $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        //Insert.
-        if(isset($_POST['nome'])){
+        //delete/Insert/alterar
+        if (isset($_GET['delete'])) {
+            $id = (int)$_GET['delete'];
+            $pdo->exec("DELETE FROM bd_avaliacao where id=$id");
+        }
+        if(isset($_POST['nome'])) {
             $sql = $pdo->prepare("INSERT INTO bd_avaliacao VALUES (null,?,?,?,?)");
             $sql->execute(array($_POST['nome'],$_POST['album'],$_POST['nota'],$_POST['fav']));
         }
+        //paginação
+        $pag = (isset($_GET['pagina']))?$_GET['pagina'] :1;
+
+        $busca = "SELECT *FROM bd_avaliacao";
+        $todos = mysqli_query($pdo, "$busca");
+        $registros = "20";
+        $tr = mysqli_num_rows($todos);
+        $tp = ceil($tr/$registros);
+
+        $inicio = ($registros * $pag) - $registros;
+        $limite = mysqli_query($pdo, "$busca LIMIT $inicio, $registros");
+
+        $anterior = $pag -1;
+        $proximo = $pag +1;
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -107,7 +125,7 @@
 
                    $fetchbd_avaliacao = $sql->fetchAll();
                    foreach ($fetchbd_avaliacao as $key => $value){
-                       echo $value['id'].' | '.$value['nomemsc'].' | '.$value['album'].' | '.$value['nota'].' | '.$value['favoritar'];
+                       echo '<a href="?delete='.$value['id'].'"><img class="lixo" src="assets/img/lixo1.png" alt="deleta"></a>'.'<a href="?delete='.$value['id'].'"><img class="alteracao" src="assets/img/alteracao1.png" alt="deleta"></a>'.$value['id'].' | '.$value['nomemsc'].' | '.$value['album'].' | '.$value['nota'].' | '.$value['favoritar'];
                        echo '<hr>';
                    }
             ?>
