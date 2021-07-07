@@ -10886,8 +10886,24 @@ html {
   align-items: center;
 
 }
-.tableaval{
+.tableaval {
   width: 50%;
+  background-color: chartreuse;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tabela {
+  background-color: #0d6efd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.centertable {
+  text-align: center;
+  vertical-align: middle;
+  padding-right: 4vw;
 }
 .cadastromusica{
   width: 50%;

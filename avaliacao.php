@@ -27,7 +27,7 @@
             $sql = $pdo->prepare("INSERT INTO bd_avaliacao VALUES (null,?,?,?,?)");
             $sql->execute(array($_POST['nome'],$_POST['album'],$_POST['nota'],$_POST['fav']));
         }
-        //paginação
+        /*//paginação
         $pag = (isset($_GET['pagina']))?$_GET['pagina'] :1;
 
         $busca = "SELECT *FROM bd_avaliacao";
@@ -40,7 +40,7 @@
         $limite = mysqli_query($pdo, "$busca LIMIT $inicio, $registros");
 
         $anterior = $pag -1;
-        $proximo = $pag +1;
+        $proximo = $pag +1;*/
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -119,16 +119,19 @@
                 </div>
             </div>
             <div class="tableaval">
-            <?php
-                   $sql = $pdo->prepare("SELECT * FROM bd_avaliacao");
-                   $sql-> execute();
-
-                   $fetchbd_avaliacao = $sql->fetchAll();
-                   foreach ($fetchbd_avaliacao as $key => $value){
-                       echo '<a href="?delete='.$value['id'].'"><img class="lixo" src="assets/img/lixo1.png" alt="deleta"></a>'.'<a href="?delete='.$value['id'].'"><img class="alteracao" src="assets/img/alteracao1.png" alt="deleta"></a>'.$value['id'].' | '.$value['nomemsc'].' | '.$value['album'].' | '.$value['nota'].' | '.$value['favoritar'];
-                       echo '<hr>';
-                   }
-            ?>
+            <table class="tabela">
+                <tr>
+                    <th scope="col" class="centertable">#</th>
+                    <th scope="col" class="centertable">nome</th>
+                    <th scope="col" class="centertable">album</th>
+                    <th scope="col" class="centertable">nota</th>
+                    <th scope="col" class="centertable">favoritas</th>
+                </tr>
+                <tr>
+                    <th scope="row" class="centertable">1</th>
+                    <td rowspan="2" class="centertable">rejeite falsos icones</td><td class="centertable">MPD1</td><td class="centertable">8</td><td class="centertable">★</td>
+                </tr>
+            </table>
             </div>
         </div>
         </div>       
