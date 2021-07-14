@@ -10888,25 +10888,42 @@ html {
 }
 .tableaval {
   width: 50%;
-  background-color: chartreuse;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: column;
 }
 .tabela {
-  background-color: #0d6efd;
+  padding-top: 8vh;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 .centertable {
   text-align: center;
   vertical-align: middle;
-  padding-right: 4vw;
+  padding-right: 3vw;
+  padding-top: 1vh;
+}
+.paginacao{
+  position: relative;
+
 }
 .cadastromusica{
   width: 50%;
+}
+.pag{
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.itemlista{
+  padding-right: 0.5vw;
+}
+.pesquisa{
+  background-color: rgb(207, 206, 206);
+  border-radius: 8px;
 }
 header.masthead {
   position: relative;
