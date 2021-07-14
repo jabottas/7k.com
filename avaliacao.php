@@ -150,7 +150,7 @@ $proximo = $pag + 1;
                                 <td class="centertable"><?php echo $nota; ?></td>
                                 <td class="centertable"><?php echo $fav; ?></td>
                                 <td class="centertable"><?php echo '<a href=\'?delete='.$id.'\'><img class="lixo" src="assets/img/lixo2.png" alt="lixo"></a>'; ?>
-                                <?php echo '<a href=\'?delete='.$id.'\'><img class="lixo" src="assets/img/alteracao2.png" alt="lixo"></a>'; ?></td>
+                                <?php echo '<a href=\'alteracao.php?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
                             </tr>
                 <?php } ?>
                 </table>
