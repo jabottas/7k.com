@@ -19,14 +19,33 @@
 <?php
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+$anginha = NULL;
+$shesssh = NULL;
+$wheretogo = "";
+$faaav = "";
 //delete/Insert/alterar
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     $pdo->exec("DELETE FROM bd_avaliacao where id=$id");
-}
-if (isset($_POST['nome'])) {
+}else if (isset($_POST['nome'])) {
     $sql = $pdo->prepare("INSERT INTO bd_avaliacao VALUES (null,?,?,?,?)");
     $sql->execute(array($_POST['nome'], $_POST['album'], $_POST['nota'], $_POST['fav']));
+}else if (isset($_GET['id'])) {
+    $id = (int)$_GET['id'];
+    $lar = "SELECT * FROM bd_avaliacao WHERE id=".$id;
+    $anginha = $pdo->query($lar);
+    $wheretogo = "avaliacao.php?alt=true";
+    $shesssh = $anginha->fetch(PDO::FETCH_OBJ);
+    while($shesssh2 = $anginha->fetch(PDO::FETCH_ASSOC)){
+    $faaav = $shesssh2['fav'];
+}
+}else if(isset($_GET['alt'])){
+    $id = (int)$_POST['id_alt'];
+    $lar = "UPDATE * FROM bd_avaliacao WHERE id=".$id;
+    $anginha = $pdo->query($lar);
+    $wheretogo = "avaliacao.php?alt=true";
 }
 //paginação
 $pag = (isset($_GET['pagina'])) ? $_GET['pagina'] : 1;
@@ -67,41 +86,56 @@ $proximo = $pag + 1;
             <!--form-->
             <div class="cadastromusica">
                 <div class="wrap-login100">
-                    <form method="POST" class="login100-form validate-form">
+                    <form method="POST" value="<?php echo $wheretogo;?>" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
-                            classificar
+                            <?php 
+                            if($anginha != false){
+                            
+                            if($shesssh->id != NULL){
+                                echo "Alterar";
+                            }else{
+                                echo "Classificar";
+                            }}else{
+                                echo "Classificar";
+                            } ?>
                         </span>
+                        <?php
+                        if($shesssh != NULL){
+                        if($shesssh->id != NULL){
+                                echo "<input name='id_alt' id='id_alt' value='".$shesssh->id."' hidden />";
+                            }}
+                        ?>
                         <span class="login100-form-title p-b-48">
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" method="POST" name="nome">
-                            <span class="focus-input100" data-placeholder="name música"></span>
+                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nomemsc; }else{} ?>" name="nome">
+                            <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" list="albuns" method="POST" id="escolha-album" name="album" />
-                            <span class="focus-input100" data-placeholder="álbum"></span>
-                            <datalist id="albuns">
-                                <option value="MPD1">
+                            <input class="input100" list="albuns" placeholder="álbum" value="<?php if($shesssh != NULL){echo $shesssh->album; }else{} ?>" method="POST" id="escolha-album" name="album" />
+                            <span class="focus-input100"></span>
+                            <datalist id="albuns" >
+                                <option  value="MPD1">
                                 <option value="MPD2">
                                 <option value="MPD3">
                             </datalist>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="number" method="POST" name="nota" min="0" max="10">
-                            <span class="focus-input100" data-placeholder="nota"></span>
+                            <input class="input100" type="number" placeholder="nota" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nota; }else{} ?>" name="nota" min="0" max="10">
+                            <span class="focus-input100"></span>
                         </div>
                         <p>Favoritar música?</p>
                         <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios1" value="★" checked>
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios1" value="★" <?php if($faaav != NULL){echo "checked";$fff = '-__'; }else{$fff = '__'; } ?> >
                             <label class="form-check-label" for="exampleRadios1">
                                 Sim
                             </label>
                         </div>
                         <div class="form-check wrap-input100">
-                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios2" value="">
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios2" value="" <?php if($fff == "__"){echo "checked";}else{} ?> >
                             <label class="form-check-label" for="exampleRadios2">
                                 Não
                             </label>
@@ -113,7 +147,7 @@ $proximo = $pag + 1;
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
 
-                                <input class="login100-form-btn" value="cadastrar" id="cadastromsc" name="cadastromsc" type="submit">
+                                <input class="login100-form-btn" value="<?php if($shesssh != NULL){ echo 'Alterar'; }else{ echo 'Classificar'; } ?>" id="cadastromsc" name="cadastromsc" type="submit">
 
                             </div>
                         </div>
@@ -150,7 +184,7 @@ $proximo = $pag + 1;
                                 <td class="centertable"><?php echo $nota; ?></td>
                                 <td class="centertable"><?php echo $fav; ?></td>
                                 <td class="centertable"><?php echo '<a href=\'?delete='.$id.'\'><img class="lixo" src="assets/img/lixo2.png" alt="lixo"></a>'; ?>
-                                <?php echo '<a href=\'alteracao.php?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
+                                <?php echo '<a href=\'avaliacao.php?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
                             </tr>
                 <?php } ?>
                 </table>
