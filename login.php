@@ -24,20 +24,8 @@
         <link rel="stylesheet" type="text/css" href="css/sup.css">
     </head>
     <?php
-
-        try{
         $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        //Insert.
-        $sal = $_POST['nome'] ?? NULL;
-        $sichinha = $_POST['termo'] ?? NULL;
-        if(isset($sal)){
-            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?,?)");
-            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$_POST['radio'],$sichinha));
-        }
-        }catch(Exception $e){
-        echo "<script>alert('erro!')</script>";
-        }
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -63,14 +51,10 @@
                 <div class="wrap-login100">
                     <form method="POST" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
-                            cadastro
+                            Login
                         </span>
                         <span class="login100-form-title p-b-48">
                         </span>
-                        <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nome">
-                            <span class="focus-input100" data-placeholder="name"></span>
-                        </div>
     
                         <div class="wrap-input100 validate-input">
                             <input class="input100" type="text" name="email">
@@ -84,36 +68,13 @@
                             <input class="input100" type="password" name="pass">
                             <span class="focus-input100" data-placeholder="Password"></span>
                         </div>
-
-                        <div class="wrap-input100 validate-input">
-                            <input class="input100" type="date" name="data">
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="radio" id="exampleRadios1" value="m" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              masculino
-                            </label>
-                        </div>
-                        <div class="form-check wrap-input100">
-                            <input class="form-check-input shadow-none" type="radio" name="radio" id="exampleRadios2" value="f">
-                            <label class="form-check-label" for="exampleRadios2">
-                              feminino
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" name="termo" type="checkbox" id="flexCheckDefault" checked = "false"> <!--pequeno bug-->
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Concordo com todos os termos de acesso do site.
-                            </label>
-                        </div>
     
                         <div class="container-login100-form-btn">
                             <div class="wrap-login100-form-btn">
                                 <div class="login100-form-bgbtn"></div>
-                                <input class="login100-form-btn" value="cadastro" id="cadastro" name="cadastro" type="submit" >
+                                <input class="login100-form-btn" value="login" id="login" name="login" type="submit" >
                             </div>
+                            <a class="pt-2" href="cadastro.php">cadastrar</a>
                         </div>
                     </form>
                 </div>
