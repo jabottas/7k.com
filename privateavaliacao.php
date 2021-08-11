@@ -15,13 +15,14 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/sup3.css" />
-
 </head>
 <?php
+include("verifica_usuario_logado.php");
+
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+$nomeuser = "kaua";
 
 $anginha = NULL;
 $shesssh = NULL;
@@ -69,7 +70,7 @@ $proximo = $pag + 1;
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container px-3">
-            <a class="navbar-brand" href="index.html"><img class="logo7k" src="assets/img/logo7k.png" alt="logo"></a>
+            <a class="navbar-brand" href="privateindex.php"><img class="logo7k" src="assets/img/logo7k.png" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
@@ -77,8 +78,8 @@ $proximo = $pag + 1;
                         <li class="nav-item"><a class="nav-link" href="MPD2.html">MPD2</a></li>
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
-                    <li class="nav-item"><a class="nav-link" href="avaliacao.php">Avaliações</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privateavaliacao.php">Avaliações</a></li>
+                    <li id="dropdown" class="nav-item"><a class="nav-link" href="logout.php">logout</a></li>
                 </ul>
             </div>
         </div>
@@ -86,6 +87,76 @@ $proximo = $pag + 1;
     <div class="centraliza2">
         <div class="centraliza">
             <!--form-->
+            <div class="cadastromusica">
+                <div class="wrap-login100">
+                    <form method="POST" value="<?php echo $wheretogo;?>" class="login100-form validate-form">
+                        <span class="login100-form-title p-b-26">
+                            <?php 
+                            if($anginha != false){
+                            
+                            if($shesssh->id != NULL){
+                                echo "Alterar";
+                            }else{
+                                echo "Classificar";
+                            }}else{
+                                echo "Classificar";
+                            } ?>
+                        </span>
+                        <?php
+                        if($shesssh != NULL){
+                        if($shesssh->id != NULL){
+                                echo "<input name='id_alt' id='id_alt' value='".$shesssh->id."' hidden />";
+                            }}
+                        ?>
+                        <span class="login100-form-title p-b-48">
+                        </span>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nomemsc; }else{} ?>" name="nome">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" list="albuns" placeholder="álbum" value="<?php if($shesssh != NULL){echo $shesssh->album; }else{} ?>" method="POST" id="escolha-album" name="album" />
+                            <span class="focus-input100"></span>
+                            <datalist id="albuns" >
+                                <option  value="MPD1">
+                                <option value="MPD2">
+                                <option value="MPD3">
+                            </datalist>
+                        </div>
+
+                        <div class="wrap-input100 validate-input">
+                            <input class="input100" type="number" placeholder="nota" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nota; }else{} ?>" name="nota" min="0" max="10">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <p>Favoritar música?</p>
+                        <div class="form-check">
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios1" value="★" <?php if($faaav != NULL){echo "checked";$fff = '-__'; }else{$fff = '__'; } ?> >
+                            <label class="form-check-label" for="exampleRadios1">
+                                Sim
+                            </label>
+                        </div>
+                        <div class="form-check wrap-input100">
+                            <input class="form-check-input shadow-none" type="radio" name="fav" id="exampleRadios2" value="" <?php if($fff == "__"){echo "checked";}else{} ?> >
+                            <label class="form-check-label" for="exampleRadios2">
+                                Não
+                            </label>
+                        </div>
+
+                        <div id="dropDownSelect1"></div>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+
+                                <input class="login100-form-btn" value="<?php if($shesssh != NULL){ echo 'Alterar'; }else{ echo 'Classificar'; } ?>" id="cadastromsc" name="cadastromsc" type="submit">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="tableaval">
                 <div>
                 <form action="busca.php" method="GET" >
@@ -99,6 +170,7 @@ $proximo = $pag + 1;
                             <th scope="col" class="centertable">album</th>
                             <th scope="col" class="centertable">nota</th>
                             <th scope="col" class="centertable">favoritas</th>
+                            <th scope="col" class="centertable">ações</th>
                         </tr>
                         <?php
                         while ($dados = $limite->fetch(PDO::FETCH_ASSOC)) {
@@ -114,6 +186,8 @@ $proximo = $pag + 1;
                                 <td class="centertable"><?php echo $album; ?></td>
                                 <td class="centertable"><?php echo $nota; ?></td>
                                 <td class="centertable"><?php echo $fav; ?></td>
+                                <td class="centertable"><?php echo '<a href=\'?delete='.$id.'\'><img class="lixo" src="assets/img/lixo2.png" alt="lixo"></a>'; ?>
+                                <?php echo '<a href=\'avaliacao.php?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
                             </tr>
                 <?php } ?>
                 </table>

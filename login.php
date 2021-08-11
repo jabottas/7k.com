@@ -26,6 +26,7 @@
     <?php
         $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -49,7 +50,7 @@
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
-                    <form method="POST" class="login100-form validate-form">
+                    <form method="POST" action="conferelogin.php" class="login100-form validate-form">
                         <span class="login100-form-title p-b-26">
                             Login
                         </span>
@@ -57,15 +58,15 @@
                         </span>
     
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="email">
-                            <span class="focus-input100" data-placeholder="Email"></span>
+                            <input class="input100" type="text" name="nome" required>
+                            <span class="focus-input100" data-placeholder="nome"></span>
                         </div>
     
                         <div class="wrap-input100 validate-input" data-validate="senha">
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
-                            <input class="input100" type="password" name="pass">
+                            <input class="input100" type="password" name="senha" required>
                             <span class="focus-input100" data-placeholder="Password"></span>
                         </div>
     
@@ -80,9 +81,6 @@
                 </div>
             </div>
         </div>
-        
-    
-        <div id="dropDownSelect1"></div>
         
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="vendor/animsition/js/animsition.min.js"></script>

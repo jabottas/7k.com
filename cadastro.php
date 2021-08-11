@@ -32,8 +32,8 @@
         $sal = $_POST['nome'] ?? NULL;
         $sichinha = $_POST['termo'] ?? NULL;
         if(isset($sal)){
-            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?,?)");
-            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$_POST['radio'],$sichinha));
+            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?)");
+            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$sichinha));
         }
         }catch(Exception $e){
         echo "<script>alert('erro!')</script>";
@@ -68,12 +68,12 @@
                         <span class="login100-form-title p-b-48">
                         </span>
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nome">
+                            <input class="input100" type="text" name="nome" required>
                             <span class="focus-input100" data-placeholder="name"></span>
                         </div>
     
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="email">
+                            <input class="input100" type="text" name="email" required>
                             <span class="focus-input100" data-placeholder="Email"></span>
                         </div>
     
@@ -81,12 +81,12 @@
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
-                            <input class="input100" type="password" name="pass">
+                            <input class="input100" type="password" name="pass" required>
                             <span class="focus-input100" data-placeholder="Password"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="date" name="data">
+                            <input class="input100" type="date" name="data" required>
                         </div>
 
                         <div class="form-check">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input shadow-none" name="termo" type="checkbox" id="flexCheckDefault" checked = "false"> <!--pequeno bug-->
+                            <input class="form-check-input shadow-none" name="termo" type="checkbox" id="flexCheckDefault" checked = "false">
                             <label class="form-check-label" for="flexCheckDefault">
                               Concordo com todos os termos de acesso do site.
                             </label>
