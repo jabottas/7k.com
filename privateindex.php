@@ -20,7 +20,6 @@
         
         $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $nomeuser = "kaua";
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -61,7 +60,7 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">Músicas para drift volume 1</h2>
-                            <!--<a href="mpd1.html" class="text-decoration-none"><p>"MPD1", O primeiro album oficial do artista, onde criou-se sua estética músical e que conta com diversos clássicos aclamados até os dias de hoje.</p></a>-->
+                            <!--<a href="mpd1.html" class="text-decoration-none"><p>"MPD1", O primeiro album oficial do artista, onde criou-se sua est??tica m??sical e que conta com diversos cl??ssicos aclamados at?? os dias de hoje.</p></a>-->
                             <p>"MPD1", O primeiro album oficial do artista, onde criou-se sua estética músical e que conta com diversos clássicos aclamados até os dias de hoje.</p>
                         </div>
                     </div>
@@ -79,8 +78,8 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <h2 class="display-4">Músicas para drift volume 2</h2>
-                            <!--<a href="mpd2.html" class="text-decoration-none"><p>Considerado por muitos uma obra prima, "MPD2" é uma mixtape realmente diferenciada tanto em sonoridade quanto em repetório, contando ao todo com 6 músicas e 6 clássicos esse album com certeza merece uma chance.</p></a>-->
-                            <p>Considerado por muitos uma obra prima, "MPD2" é uma mixtape realmente diferenciada tanto em sonoridade quanto em repetório, contando ao todo com 6 músicas e 6 clássicos esse album com certeza merece uma chance.</p>
+                            <!--<a href="mpd2.html" class="text-decoration-none"><p>Considerado por muitos uma obra prima, "MPD2" ?? uma mixtape realmente diferenciada tanto em sonoridade quanto em repet??rio, contando ao todo com 6 m??sicas e 6 cl??ssicos esse album com certeza merece uma chance.</p></a>-->
+                            <p>Considerado por muitos uma obra prima, "MPD2" é uma mixtape realmente diferenciada tanto em sonoridade quanto em repertório, contando ao todo com 6 músicas e 6 clássicos esse album com certeza merece uma chance.</p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +96,7 @@
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
                             <h2 class="display-4">Músicas para drift volume 3</h2>
-                            <!--<a href="mpd3.html" class="text-decoration-none"><p>O mais novo lançamento de yungbuda cheio de grandes músicas com um estilo bem eletrônico, mas com bastante identidade. Nada mais do que justo essa trilogia terminar quebrando tudo com "MPD3".</p></a>-->
+                            <!--<a href="mpd3.html" class="text-decoration-none"><p>O mais novo lan??amento de yungbuda cheio de grandes m??sicas com um estilo bem eletr??nico, mas com bastante identidade. Nada mais do que justo essa trilogia terminar quebrando tudo com "MPD3".</p></a>-->
                            <p>O mais novo lançamento de yungbuda cheio de grandes músicas com um estilo bem eletrônico, mas com bastante identidade. Nada mais do que justo essa trilogia terminar quebrando tudo com "MPD3".</p>
                         </div>
                     </div>
@@ -107,7 +106,7 @@
         <!-- Footer
         <footer class="py-4 bg-dark flex-shrink-0">
             <div class="container text-center">
-              <p class="text-muted">7k.com - 2021 © Todos os Direitos Reservados</p>
+              <p class="text-muted">7k.com - 2021 ?? Todos os Direitos Reservados</p>
             </div>
           </footer>-->
         <!-- Bootstrap core JS-->

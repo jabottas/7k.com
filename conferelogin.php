@@ -3,18 +3,20 @@
 
 $nome = $_POST['nome'];
 $senha = $_POST['senha'];
-
+echo $nome;
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $sql = "SELECT nome, senha FROM bd_registro WHERE (nome = '".$nome ."') AND (senha = '". $senha ."')";
 $query = $pdo->query($sql);
-//ver isso pelo amor de deus n sei pdo
+echo $query->rowCount();
 if ($query->rowCount() == 1) {
-	@session_start();
+	session_start();
+	$_SESSION['login'] = $nome;
+	$_SESSION['senha'] = $senha;
 	header('Location: privateindex.php'); 
 }
 else
 {
-	@session_start();
+	session_start();
 	$_SESSION = array();
 	session_destroy();
 	header("Location: login.php");
