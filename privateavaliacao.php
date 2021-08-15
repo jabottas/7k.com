@@ -22,8 +22,6 @@ include("verifica_usuario_logado.php");
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$nomeuser = "kaua";
-
 $anginha = NULL;
 $shesssh = NULL;
 $wheretogo = "";
