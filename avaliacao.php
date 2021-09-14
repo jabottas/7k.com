@@ -19,6 +19,8 @@
 
 </head>
 <?php
+
+try {
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -63,6 +65,9 @@ $limite = $pdo->query("$busca LIMIT $inicio, $registros");
 
 $anterior = $pag - 1;
 $proximo = $pag + 1;
+}catch(Exception $e){
+    echo "<script>alert('erro!')</script>";
+}
 ?>
 
 <body id="page-top">
@@ -115,7 +120,7 @@ $proximo = $pag + 1;
                                 <td class="centertable"><?php echo $nota; ?></td>
                                 <td class="centertable"><?php echo $fav; ?></td>
                             </tr>
-                <?php } ?>
+                        <?php } ?>
                 </table>
                     <nav class="pag">
                         <ul class="pagination">

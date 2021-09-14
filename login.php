@@ -58,7 +58,7 @@
                         </span>
     
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nome" required>
+                            <input class="input100" type="text" name="nome" required pattern="[a-zA-Z0-9]+">
                             <span class="focus-input100" data-placeholder="nome"></span>
                         </div>
     
@@ -66,7 +66,7 @@
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
-                            <input class="input100" type="password" name="senha" required>
+                            <input class="input100" type="password" name="senha" required pattern="[a-zA-Z0-9]+">
                             <span class="focus-input100" data-placeholder="Password"></span>
                         </div>
     

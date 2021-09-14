@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 #
 // Iniciando a session
 #

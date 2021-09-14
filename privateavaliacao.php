@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/main.css" />
 </head>
 <?php
+try{
 include("verifica_usuario_logado.php");
 
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
@@ -62,6 +63,9 @@ $limite = $pdo->query("$busca LIMIT $inicio, $registros");
 
 $anterior = $pag - 1;
 $proximo = $pag + 1;
+}catch(Exception $e){
+    echo "<script>alert('erro!')</script>";
+}
 ?>
 
 <body id="page-top">
@@ -110,7 +114,7 @@ $proximo = $pag + 1;
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nomemsc; }else{} ?>" name="nome">
+                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nomemsc; }else{} ?>" name="nome" pattern="[A-zÀ-ž0-9 ]+">
                             <span class="focus-input100"></span>
                         </div>
 
@@ -185,7 +189,7 @@ $proximo = $pag + 1;
                                 <td class="centertable"><?php echo $nota; ?></td>
                                 <td class="centertable"><?php echo $fav; ?></td>
                                 <td class="centertable"><?php echo '<a href=\'?delete='.$id.'\'><img class="lixo" src="assets/img/lixo2.png" alt="lixo"></a>'; ?>
-                                <?php echo '<a href=\'avaliacao.php?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
+                                <?php echo '<a href=\'?id='.$id.'\'><img class="alteracao" src="assets/img/alteracao2.png" alt="alteracao"></a>'; ?></td>
                             </tr>
                 <?php } ?>
                 </table>

@@ -5,7 +5,7 @@ $nome = $_POST['nome'];
 $senha = $_POST['senha'];
 echo $nome;
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
-$sql = "SELECT nome, senha FROM bd_registro WHERE (nome = '".$nome ."') AND (senha = '". $senha ."')";
+$sql = "SELECT nome, senha FROM bd_registro WHERE (nome = '".$nome ."') AND (senha = '". md5($senha) ."')";
 $query = $pdo->query($sql);
 echo $query->rowCount();
 if ($query->rowCount() == 1) {

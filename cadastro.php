@@ -33,7 +33,7 @@
         $sichinha = $_POST['termo'] ?? NULL;
         if(isset($sal)){
             $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?)");
-            $sql->execute(array($_POST['nome'],$_POST['email'],$_POST['pass'],$_POST['data'],$sichinha));
+            $sql->execute(array($_POST['nome'],$_POST['email'],md5($_POST['pass']),$_POST['data'],$sichinha));
         }
         }catch(Exception $e){
         echo "<script>alert('erro!')</script>";
@@ -68,7 +68,7 @@
                         <span class="login100-form-title p-b-48">
                         </span>
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="nome" required>
+                            <input class="input100" type="text" name="nome" required pattern="[a-zA-Z0-9]+">
                             <span class="focus-input100" data-placeholder="name"></span>
                         </div>
     
@@ -81,7 +81,7 @@
                             <span class="btn-show-pass">
                                 <i class="zmdi zmdi-eye"></i>
                             </span>
-                            <input class="input100" type="password" name="pass" required>
+                            <input class="input100" type="password" name="pass" required pattern="[a-zA-Z0-9]+">
                             <span class="focus-input100" data-placeholder="Password"></span>
                         </div>
 

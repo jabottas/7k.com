@@ -1,4 +1,5 @@
 <?php
+try{
 if (!isset($_GET['nomemsc'])) {
 	header("Location: avaliacao.php");
 	exit;
@@ -6,6 +7,9 @@ if (!isset($_GET['nomemsc'])) {
 $nome = "%".trim($_GET['nomemsc'])."%";
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
 $sth = $pdo->query('SELECT * FROM bd_avaliacao WHERE nomemsc LIKE \''.$nome.'\'');
+}catch(Exception $e){
+    echo "<script>alert('erro!')</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
