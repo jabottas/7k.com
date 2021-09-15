@@ -34,7 +34,9 @@
         if(isset($sal)){
             $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?)");
             $sql->execute(array($_POST['nome'],$_POST['email'],md5($_POST['pass']),$_POST['data'],$sichinha));
+            header("Location: login.php");
         }
+        
         }catch(Exception $e){
         echo "<script>alert('erro!')</script>";
         }
@@ -73,7 +75,7 @@
                         </div>
     
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" name="email" required>
+                            <input class="input100" type="text" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$">
                             <span class="focus-input100" data-placeholder="Email"></span>
                         </div>
     
