@@ -1,12 +1,12 @@
 <?php
 try{
-if (!isset($_GET['nomemsc'])) {
+if (!isset($_GET['nome'])) {
 	header("Location: avaliacao.php");
 	exit;
 }
-$nome = "%".trim($_GET['nomemsc'])."%";
+$nome = "%".trim($_GET['nome'])."%";
 $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
-$sth = $pdo->query('SELECT * FROM bd_avaliacao WHERE nomemsc LIKE \''.$nome.'\'');
+$sth = $pdo->query('SELECT * FROM bd_avaliacao WHERE nome LIKE \''.$nome.'\'');
 }catch(Exception $e){
     echo "<script>alert('erro!')</script>";
 }
@@ -63,10 +63,10 @@ $sth = $pdo->query('SELECT * FROM bd_avaliacao WHERE nomemsc LIKE \''.$nome.'\''
         $Resultado = "";
         while($dados = $sth->fetch(PDO::FETCH_ASSOC)) {
             $id = $dados['id'];
-            $nome = $dados['nomemsc'];
+            $nome = $dados['nome'];
             $album = $dados['album'];
             $nota = $dados['nota'];
-            $fav = $dados['favoritar'];
+            $fav = $dados['fav'];
         ?>
             <tr>
                 <td scope="row" class="centertable"><?php echo $id; ?></td>

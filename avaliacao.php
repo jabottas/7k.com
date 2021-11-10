@@ -94,7 +94,7 @@ $proximo = $pag + 1;
             <div class="tableaval">
                 <div>
                 <form action="busca.php" method="GET" >
-                    <input type="text" name="nomemsc" size="50" placeholder="pesquisar" id="nomemsc">
+                    <input type="text" name="nome" size="50" placeholder="pesquisar" id="nome">
                     <input type="submit" value="buscar" style="width:100px;">
 	            </form>
                 <table class="tabela">
@@ -108,10 +108,10 @@ $proximo = $pag + 1;
                         <?php
                         while ($dados = $limite->fetch(PDO::FETCH_ASSOC)) {
                             $id = $dados['id'];
-                            $nome = $dados['nomemsc'];
+                            $nome = $dados['nome'];
                             $album = $dados['album'];
                             $nota = $dados['nota'];
-                            $fav = $dados['favoritar'];
+                            $fav = $dados['fav'];
                         ?>
                             <tr>
                                 <td scope="row" class="centertable"><?php echo $id; ?></td>

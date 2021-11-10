@@ -25,21 +25,20 @@
     </head>
     <?php
 
-        try{
         $pdo = new PDO('mysql:host=localhost;dbname=7k','root','');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         //Insert.
         $sal = $_POST['nome'] ?? NULL;
         $sichinha = $_POST['termo'] ?? NULL;
-        if(isset($sal)){
-            $sql = $pdo->prepare("INSERT INTO BD_Registro VALUES (null,?,?,?,?,?)");
-            $sql->execute(array($_POST['nome'],$_POST['email'],md5($_POST['pass']),$_POST['data'],$sichinha));
+        if(isset($sichinha)){
+            try {
+            $sql = $pdo->prepare("INSERT INTO bd_registro (nome, email, senha, data) VALUES (?,?,?,?)");
+            $sql->execute(array($_POST['nome'],$_POST['email'],md5($_POST['pass']),$_POST['data']));
             header("Location: login.php");
+        } catch (\Throwable $th) {
+            echo($th->getMessage());
+        }
         }
         
-        }catch(Exception $e){
-        echo "<script>alert('erro!')</script>";
-        }
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -89,19 +88,6 @@
 
                         <div class="wrap-input100 validate-input">
                             <input class="input100" type="date" name="data" required>
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input shadow-none" type="radio" name="radio" id="exampleRadios1" value="m" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                              masculino
-                            </label>
-                        </div>
-                        <div class="form-check wrap-input100">
-                            <input class="form-check-input shadow-none" type="radio" name="radio" id="exampleRadios2" value="f">
-                            <label class="form-check-label" for="exampleRadios2">
-                              feminino
-                            </label>
                         </div>
 
                         <div class="form-check">

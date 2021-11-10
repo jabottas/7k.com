@@ -31,10 +31,10 @@ $faaav = "";
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     $pdo->exec("DELETE FROM bd_avaliacao where id=$id");
-}else if (isset($_POST['nome'])) {
-    $sql = $pdo->prepare("INSERT INTO bd_avaliacao VALUES (null,?,?,?,?)");
+    }if (isset($_POST['nome'])) {
+    $sql = $pdo->prepare("INSERT INTO bd_avaliacao (nome, album, nota, fav) VALUES (?,?,?,?)");
     $sql->execute(array($_POST['nome'], $_POST['album'], $_POST['nota'], $_POST['fav']));
-}else if (isset($_GET['id'])) {
+    }if (isset($_GET['id'])) {
     $id = (int)$_GET['id'];
     $lar = "SELECT * FROM bd_avaliacao WHERE id=".$id;
     $anginha = $pdo->query($lar);
@@ -42,8 +42,8 @@ if (isset($_GET['delete'])) {
     $shesssh = $anginha->fetch(PDO::FETCH_OBJ);
     while($shesssh2 = $anginha->fetch(PDO::FETCH_ASSOC)){
     $faaav = $shesssh2['fav'];
-}
-}else if(isset($_GET['alt'])){
+    }
+    }if(isset($_GET['alt'])){
     $id = (int)$_POST['id_alt'];
     $lar = "UPDATE * FROM bd_avaliacao WHERE id=".$id;
     $anginha = $pdo->query($lar);
@@ -81,6 +81,7 @@ $proximo = $pag + 1;
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
                     <li class="nav-item"><a class="nav-link" href="privateavaliacao.php">Avaliações</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privatecomentarios.php">Comentários</a></li>
                     <li id="dropdown" class="nav-item"><a class="nav-link" href="logout.php">logout</a></li>
                 </ul>
             </div>
@@ -114,7 +115,7 @@ $proximo = $pag + 1;
                         </span>
 
                         <div class="wrap-input100 validate-input">
-                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nomemsc; }else{} ?>" name="nome" pattern="[A-zÀ-ž0-9 ]+">
+                            <input class="input100" type="text" placeholder="name música" method="POST" value="<?php if($shesssh != NULL){echo $shesssh->nome; }else{} ?>" name="nome" pattern="[A-zÀ-ž0-9 ]+">
                             <span class="focus-input100"></span>
                         </div>
 
@@ -162,7 +163,7 @@ $proximo = $pag + 1;
             <div class="tableaval">
                 <div>
                 <form action="busca.php" method="GET" >
-                    <input type="text" name="nomemsc" size="50" placeholder="pesquisar" id="nomemsc">
+                    <input type="text" name="nome" size="50" placeholder="pesquisar" id="nome">
                     <input type="submit" value="buscar" style="width:100px;">
 	            </form>
                 <table class="tabela">
@@ -177,10 +178,10 @@ $proximo = $pag + 1;
                         <?php
                         while ($dados = $limite->fetch(PDO::FETCH_ASSOC)) {
                             $id = $dados['id'];
-                            $nome = $dados['nomemsc'];
+                            $nome = $dados['nome'];
                             $album = $dados['album'];
                             $nota = $dados['nota'];
-                            $fav = $dados['favoritar'];
+                            $fav = $dados['fav'];
                         ?>
                             <tr>
                                 <td scope="row" class="centertable"><?php echo $id; ?></td>
