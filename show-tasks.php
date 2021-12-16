@@ -17,9 +17,9 @@ if (mysqli_num_rows($result) > 0) {
 
 <?php
     }
-    echo '<div class="pending-text">You have ' . mysqli_num_rows($result) . ' pending tasks.</div>';
+    
 } else {
-    echo "<li><span class='text'>No Record Found.</span></li>";
+    
 }
 
 ?>

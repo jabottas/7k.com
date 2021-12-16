@@ -34,7 +34,7 @@
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
                     <li class="nav-item"><a class="nav-link" href="privateavaliacao.php">Avaliações</a></li>
-                    <li class="nav-item"><a class="nav-link" href="privatecomentarios.php">Comentários</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privateplanning.php">Plan to listen</a></li>
                     <li id="dropdown" class="nav-item"><a class="nav-link" href="logout.php">logout</a></li>
                     </ul>
                 </div>

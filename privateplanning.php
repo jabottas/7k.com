@@ -18,12 +18,9 @@
     </head>
     <?php
         include("verifica_usuario_logado.php");
-        
-        $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = $pdo->prepare("INSERT INTO bd_comentarios (comentario) VALUES (?)");
-        $sql->execute(array($_POST['comentario']));
+        $pdo = new PDO('mysql:host=localhost;dbname=7k', 'root', '');
+
     ?>
     <body id="page-top">
         <!-- Navigation-->
@@ -38,27 +35,83 @@
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
                     <li class="nav-item"><a class="nav-link" href="privateavaliacao.php">Avaliações</a></li>
-                    <li class="nav-item"><a class="nav-link" href="privatecomentarios.php">Comentários</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privateplanning.php">Plan to listen</a></li>
                     <li id="dropdown" class="nav-item"><a class="nav-link" href="logout.php">logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="div-100">
-        <div class="coment-area">
-            <h2>Comentários:</h2>
-            <form method="POST">
-                <input type="text" name="comentario" class="comentario border-0">
-                <br>
-                <input type="submit" value="comentar" onclick="criamsgbox()" class="submitsup border-0">
-            </form>
-            <button onclick="criamsgbox()"></button>
-
-            <div class="logmessage" id="logmessage">
-                <!-- mensagens de texto aki! -->
+        <div class="areacomentario">
+            <div class="wrapper">
+                <h2 class="title">Plan to listen</h2>
+                <div class="inputFields">
+                    <input type="text" id="taskValue" placeholder="músicas">
+                    <button type="submit" id="addBtn" class="btn"><i class="fa fa-plus"></i></button>
+                </div>
+                <div class="content">
+                    <ul id="tasks">
+                        
+                    </ul>
+                </div>
             </div>
+        </div>                
         </div>
-        </div>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+		$(document).ready(function() {
+			// Show Tasks
+			function loadTasks() {
+				$.ajax({
+					url: "show-tasks.php",
+					type: "POST",
+					success: function(data) {
+						$("#tasks").html(data);
+					}
+				});
+			}
+
+			loadTasks();
+
+			// Add Task
+			$("#addBtn").on("click", function(e) {
+				e.preventDefault();
+
+				var task = $("#taskValue").val();
+
+				$.ajax({
+					url: "add-task.php",
+					type: "POST",
+					data: {task: task},
+					success: function(data) {
+						loadTasks();
+						$("#taskValue").val('');
+						if (data == 0) {
+							alert("Something wrong went. Please try again.");
+						}
+					}
+				});
+			});
+
+			// Remove Task
+			$(document).on("click", "#removeBtn", function(e) {
+				e.preventDefault();
+				var id = $(this).data('id');
+				
+				$.ajax({
+					url: "remove-task.php",
+					type: "POST",
+					data: {id: id},
+					success: function(data) {
+						loadTasks();
+						if (data == 0) {
+							alert("Something wrong went. Please try again.");
+						}
+					}
+				});
+			});
+		});
+	</script>
         <!-- Footer
         <footer class="py-4 bg-dark flex-shrink-0">
             <div class="container text-center">

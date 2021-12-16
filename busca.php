@@ -38,8 +38,6 @@ $sth = $pdo->query('SELECT * FROM bd_avaliacao WHERE nome LIKE \''.$nome.'\'');
                         <li class="nav-item"><a class="nav-link" href="MPD2.html">MPD2</a></li>
                         <li class="nav-item"><a class="nav-link" href="MPD3.html">MPD3</a></li>
                         <li class="nav-item"><a class="nav-link">-</a></li>-->
-                    <li class="nav-item"><a class="nav-link" href="avaliacao.php">Avaliações</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
                 </ul>
             </div>
         </div>
